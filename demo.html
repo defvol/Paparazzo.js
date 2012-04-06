@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				// Active camera will refresh every 2 seconds
+				var TIMEOUT = 2000;
+				var refreshInterval = setInterval(function() {
+					var random = Math.floor(Math.random() * Math.pow(2, 31));
+					$('img#camera').attr('src', 'http://localhost:3000/camera?i=' + Math.random());
+				}, TIMEOUT);	
+			});
+		</script>
+	</head>
+	<body>
+		<img src="" id="camera">
+	</body>
+</html>

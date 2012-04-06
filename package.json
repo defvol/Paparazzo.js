@@ -1,0 +1,12 @@
+{
+		"name": "paparazzo"
+	,	"author": "Rod Wilhelmy"
+	,	"description": "MJPG streaming for the masses"
+	, "version": "0.1.0"
+	, "engines": {
+		"node": "v0.6.5"
+	}
+	, "dependencies": {
+		"coffee-script": "1.2.0"
+	}
+}
