@@ -30,40 +30,21 @@ Usage
 	# Initialize
 	
 	# Same parameters as http.get http://nodejs.org/docs/v0.6.0/api/http.html#http.get
-	p = new Paparazzo 
-			host: 'your-camera.dyndns.org'
-			port: 80
-		, (err) ->
-			console.log err.message
-	p.start
-	
-	# Update image
-	
-	updatedImage = ''
-	p.on 'update', (image) -> 
-		updatedImage = image		
-	p.on 'error', (error) ->
-		console.log err.message
+	paparazzo = new Paparazzo 
+	    host: 'camera.dyndns.org'
+	    port: 1881
+	    path: '/mjpg/video.mjpg'
+
+	paparazzo.on "update", (image) => 
+	    console.log "Downloaded #{image.length} bytes"
+
+	paparazzo.on 'error', (error) => 
+	    console.log "Error: #{error.message}"
+
+	paparazzo.start()
 		
 	# Serve image
-	
-	http = require 'http'
-	url = require 'url'
-	path = url.parse(req.url).pathname
-	
-	http.createServer (req, res) -> 
-		data = ''
-		if path == '/camera' and updatedImage?
-			data = updatedImage
-		
-		res.writeHead 200, 
-			'Content-Type': 'image/jpeg'
-			'Content-Length': data.length
-
-		res.write data, 'binary'
-		res.end()
-	.listen(3000)
-		
+	# Take a look to server.coffee
 
 **Client side**
 
@@ -84,7 +65,7 @@ You can simulate MJPG streaming by requesting new images on a specific interval.
 
 Upcoming features
 -  
-* Websockets implementation to get more fps
+* Websockets implementation to get more FPS
 
 Tested with
 -
