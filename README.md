@@ -67,6 +67,11 @@ Upcoming features
 -  
 * Websockets implementation to get more FPS
 
+Demo
+-
+	$ node bootstrap.js
+	$ open demo.html
+
 Tested with
 -
 * Axis
