@@ -63,10 +63,6 @@ You can simulate MJPG streaming by requesting new images on a specific interval.
 	<!-- In your HTML output -->
 	<img src='' id='camera' />
 
-Upcoming features
--  
-* Websockets implementation to get more FPS
-
 Demo
 -
 	$ node bootstrap.js
@@ -76,6 +72,10 @@ Tested with
 -
 * Axis
 * Vivotek
+
+Upcoming features
+-  
+* Websockets implementation to get more FPS
 
 TODO
 -  
