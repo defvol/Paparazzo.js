@@ -9,6 +9,8 @@ A high performance web proxy for serving [MJPG](http://en.wikipedia.org/wiki/Mot
 
 IPCamera (1) <-> (1) Paparazzo.js (1) <-> (N) Users
 
+![Demo screenshot](https://github.com/wilhelmbot/Paparazzo.js/raw/master/mjpg_demo.gif "Streaming a VIVOTEK camera")
+
 Background
 -
 
