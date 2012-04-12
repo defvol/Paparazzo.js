@@ -7,6 +7,8 @@
 		"node": "v0.6.5"
 	}
 	, "dependencies": {
-		"coffee-script": "1.2.0"
+			"coffee-script": "1.2.0"
+		, "chai": "0.5.2"
+		, "mocha": "1.0.1"
 	}
 }
