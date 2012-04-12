@@ -67,11 +67,8 @@ You can simulate MJPG streaming by requesting new images on a specific interval.
 
 Demo
 -
-Test
 	$ make test
-Run server
 	$ node demo/bootstrap.js
-Open browser
 	$ open demo/demo.html
 
 Tested with
