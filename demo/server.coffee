@@ -1,6 +1,6 @@
 # Using the Paparazzo.js module
 
-Paparazzo = require './paparazzo'
+Paparazzo = require '../src/paparazzo'
 http = require 'http'
 url = require 'url'
 
