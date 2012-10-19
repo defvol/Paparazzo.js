@@ -105,7 +105,7 @@ class Paparazzo extends EventEmitter
       if matches? and matches.length > 1
         # Grab length of new image and save first chunk
         newImageBeginning = remaining.indexOf(matches[0]) + matches[0].length
-        imageExpectedLength = matches[1]
+        @imageExpectedLength = matches[1]
         @data += remaining.substring newImageBeginning
       else if typeMatches?
         # If Content-Length is not present, but Content-Type is
