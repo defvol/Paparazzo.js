@@ -26,6 +26,7 @@ class Paparazzo extends EventEmitter
     options.path or= '/'
     options.headers or= {}
     @options = options
+    @memory = options.memory or 8388608 # 8MB
 
   start: ->
 
@@ -117,8 +118,12 @@ class Paparazzo extends EventEmitter
     else
       @data += chunk
 
-    # TODO: needs a threshold to avoid memory over-consumption
+    # Threshold to avoid memory over-consumption
     # E.g. if a boundary string is never found, 'data' will never stop consuming memory
+    if @data.length >= @memory
+      @data = ''
+      @emit 'error',
+        message: 'Data buffer just reached threshold, flushing memory'
 
 
 module.exports = Paparazzo
