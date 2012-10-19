@@ -1,11 +1,11 @@
 #
 # Paparazzo.js: A MJPG proxy for the masses
-# 
+#
 #   paparazzo = new Paparazzo(options)
-# 
+#
 #   paparazzo.on "update", (image) => 
-#       console.log "Downloaded #{image.length} bytes"
-#     
+#     console.log "Downloaded #{image.length} bytes"
+#
 #   paparazzo.start()
 #
 
