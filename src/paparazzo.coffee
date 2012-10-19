@@ -17,41 +17,41 @@ class Paparazzo extends EventEmitter
     @image = ''
     imageExpectedLength = -1
 
-    constructor: (options) -> 
+    constructor: (options) ->
         
         if not options.host?
-            emitter.emit 'error', 
-                message: 'Host is not defined!'  
+            emitter.emit 'error',
+                message: 'Host is not defined!'
         options.port or= 80
         options.path or= '/'
         options.headers or= {}
-        @options = options                 
+        @options = options
         
-    start: -> 
+    start: ->
         
         # To use EventEmitter in the callback, we must save our instance 'this'
         emitter = @
         
-        request = http.get @options, (response) -> 
+        request = http.get @options, (response) ->
         
-            if response.statusCode != 200 
-                emitter.emit 'error', 
+            if response.statusCode != 200
+                emitter.emit 'error',
                     message: 'Server did not respond with HTTP 200 (OK).'
                 return
       
             # Find out the boundary string that delimits images
             contentType = response.headers['content-type']
             contentTypeMatch = contentType.match(/multipart\/x-mixed-replace;boundary=(.+)/)
-            boundaryString = contentTypeMatch[1] if contentTypeMatch?.length > 1            
+            boundaryString = contentTypeMatch[1] if contentTypeMatch?.length > 1
             if not boundaryString?
-                emitter.emit 'error', 
+                emitter.emit 'error',
                     message: 'Could not find a defined boundary string.'
             boundaryString or= '--myboundary'
               
             data = ''
             response.setEncoding 'binary'
       
-            response.on 'data', (chunk) -> 
+            response.on 'data', (chunk) ->
         
                 # MJPG image boundary typically looks like this: 
                 # --myboundary
@@ -89,7 +89,7 @@ class Paparazzo extends EventEmitter
                         data += remaining.substring newImageBeginning
                     else
                         newImageBeginning = boundary + boundaryString.length
-                        emitter.emit 'error', 
+                        emitter.emit 'error',
                             message: 'Could not find beginning of next image'
                 else
                     # Keep eating, we received lots of bytes and no boundary in sight (maybe in the next chunk)
@@ -99,12 +99,12 @@ class Paparazzo extends EventEmitter
         
             response.on 'end', () ->
                 # Server closed connection 
-                emitter.emit 'error', 
+                emitter.emit 'error',
                     message: "Server closed connection!"
         
-        request.on 'error', (error) -> 
+        request.on 'error', (error) ->
             # Failed to connect
-            emitter.emit 'error', 
+            emitter.emit 'error',
                 message: error.message
 
 module.exports = Paparazzo

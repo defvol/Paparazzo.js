@@ -17,23 +17,23 @@ url = require 'url'
 # Can't find image boundary
 # http://61.119.240.67/nphMotionJpeg?Resolution=320x240&Quality=Standard
 
-paparazzo = new Paparazzo 
+paparazzo = new Paparazzo
     host: '85.105.120.239'
     port: 1881
     path: '/mjpg/video.mjpg'
 
 updatedImage = ''
 
-paparazzo.on "update", (image) => 
+paparazzo.on "update", (image) =>
     updatedImage = image
     console.log "Downloaded #{image.length} bytes"
 
-paparazzo.on 'error', (error) => 
+paparazzo.on 'error', (error) =>
     console.log "Error: #{error.message}"
 
 paparazzo.start()
 
-http.createServer (req, res) -> 
+http.createServer (req, res) ->
     data = ''
     path = url.parse(req.url).pathname
         
@@ -41,7 +41,7 @@ http.createServer (req, res) ->
         data = updatedImage
         console.log "Will serve image of #{data.length} bytes"
 
-    res.writeHead 200, 
+    res.writeHead 200,
         'Content-Type': 'image/jpeg'
         'Content-Length': data.length
 
