@@ -39,18 +39,10 @@ class Paparazzo extends EventEmitter
           message: 'Server did not respond with HTTP 200 (OK).'
         return
 
-      # Find out the boundary string that delimits images
-      contentType = response.headers['content-type']
-      contentTypeMatch = contentType.match(/multipart\/x-mixed-replace;boundary=(.+)/)
-      boundaryString = contentTypeMatch[1] if contentTypeMatch?.length > 1
-      if not boundaryString?
-        emitter.emit 'error',
-          message: 'Could not find a defined boundary string.'
-      boundaryString or= '--myboundary'
-
+      boundaryString = emitter.boundaryStringFromContentType response.headers['content-type']
       data = ''
-      response.setEncoding 'binary'
 
+      response.setEncoding 'binary'
       response.on 'data', (chunk) ->
 
         # MJPG image boundary typically looks like this:
@@ -106,5 +98,22 @@ class Paparazzo extends EventEmitter
       # Failed to connect
       emitter.emit 'error',
         message: error.message
+
+  ###
+  #
+  # Find out the boundary string that delimits images
+  # If a boundary string is not found, it fallbacks to a default boundary
+  #
+  ###
+  boundaryStringFromContentType: (type) ->
+    # M-JPEG content type looks like multipart/x-mixed-replace;boundary=<boundary-name>
+    match = type.match(/multipart\/x-mixed-replace;boundary=(.+)/)
+    boundary = match[1] if match?.length > 1
+    if not boundary?
+      boundary = '--myboundary'
+      @emit 'error',
+        message: "Couldn't find a boundary string. Falling back to --myboundary."
+    boundary
+
 
 module.exports = Paparazzo
