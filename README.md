@@ -29,41 +29,46 @@ Usage
 
 **Server side**
 
-	# Initialize
+```coffeescript
+# Initialize
 	
-	# Same parameters as http.get http://nodejs.org/docs/v0.6.0/api/http.html#http.get
-	paparazzo = new Paparazzo 
-	    host: 'camera.dyndns.org'
-	    port: 1881
-	    path: '/mjpg/video.mjpg'
+# Same parameters as http.get http://nodejs.org/docs/v0.6.0/api/http.html#http.get
+paparazzo = new Paparazzo 
+  host: 'camera.dyndns.org'
+  port: 1881
+  path: '/mjpg/video.mjpg'
 
-	paparazzo.on "update", (image) => 
-	    console.log "Downloaded #{image.length} bytes"
+paparazzo.on "update", (image) => 
+  console.log "Downloaded #{image.length} bytes"
 
-	paparazzo.on 'error', (error) => 
-	    console.log "Error: #{error.message}"
+paparazzo.on 'error', (error) => 
+  console.log "Error: #{error.message}"
 
-	paparazzo.start()
-		
-	# Serve image
-	# Take a look to server.coffee
+paparazzo.start()
+
+# Serve image
+# Take a look at server.coffee
+```
 
 **Client side**
 
 You can simulate MJPG streaming by requesting new images on a specific interval. Appending a random parameter avoids caching.
 
-	// JavaScript example using jQuery
+```javascript
+// JavaScript example using jQuery
 
-	// Active camera will refresh every 2 seconds
-	var TIMEOUT = 2000;
-	var refreshInterval = setInterval(function() {
-		var random = Math.floor(Math.random() * Math.pow(2, 31));
-		$('img#camera').attr('src', 'http://localhost:3000/camera?i=' + Math.random());
-	}, TIMEOUT);	
+// Active camera will refresh every 2 seconds
+var TIMEOUT = 2000;
+var refreshInterval = setInterval(function() {
+  var random = Math.floor(Math.random() * Math.pow(2, 31));
+  $('img#camera').attr('src', 'http://localhost:3000/camera?i=' + random);
+}, TIMEOUT);	
+```
 
-
-	<!-- In your HTML output -->
-	<img src='' id='camera' />
+```html
+<!-- In your HTML output -->
+<img src='' id='camera' />
+```
 
 Demo
 -
