@@ -3,6 +3,8 @@ Paparazzo.js
 
 _A stalker of [IP cameras](http://en.wikipedia.org/wiki/IP_camera)_
 
+[![endorse](http://api.coderwall.com/wilhelmbot/endorsecount.png)](http://coderwall.com/wilhelmbot)
+
 **What is this?**
 
 A high performance web proxy for serving [MJPG](http://en.wikipedia.org/wiki/Motion_JPEG) streams to the masses.
