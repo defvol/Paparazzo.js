@@ -33,12 +33,16 @@ Usage
 
 ```coffeescript
 # Initialize
-	
+
+# Basic auth http://en.wikipedia.org/wiki/Basic_access_authentication
+auth = 'Basic ' + new Buffer('user:secret').toString('base64')
+
 # Same parameters as http.get http://nodejs.org/docs/v0.6.0/api/http.html#http.get
 paparazzo = new Paparazzo 
   host: 'camera.dyndns.org'
   port: 1881
   path: '/mjpg/video.mjpg'
+  headers: { 'Authorization': auth }
 
 paparazzo.on "update", (image) => 
   console.log "Downloaded #{image.length} bytes"
