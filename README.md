@@ -75,8 +75,9 @@ var refreshInterval = setInterval(function() {
 Demo
 -
 	$ make test
-	$ node demo/bootstrap.js
+	$ npm install
 	$ open demo/demo.html
+	$ node demo/bootstrap.js
 
 Tested with
 -
