@@ -100,6 +100,6 @@ TODO
 License  
 -  
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+<a rel="license" href="http://opensource.org/licenses/MIT">The MIT License (MIT)</a>
 
-Copyright (c) 2012 Rodolfo Wilhelmy <[rwilhelmy@gmail.com](mailto:rwilhelmy@gmail.com)>
+Copyright (c) 2012-2013 Rodolfo Wilhelmy <[rod@wilhel.me](mailto:rod@wilhel.me)>
