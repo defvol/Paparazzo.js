@@ -27,6 +27,7 @@ class Paparazzo extends EventEmitter
     options.headers or= {}
     @options = options
     @memory = options.memory or 8388608 # 8MB
+    @data = '';
 
   start: ->
 
@@ -89,32 +90,26 @@ class Paparazzo extends EventEmitter
     if boundary_index != -1
       # Append remaining data
       @data += chunk.substring 0, boundary_index
-      # Now we got a new image
-      @image = @data
-      @emit 'update', @image
+      if @data != ''
+        # Cut all image headers
+        header_regex = /^\s*([XC][-a-zA-Z]{4,}?) *: *([^\n\r]*)\s*/m
+        while true
+          match = this.data.match(header_regex);
+          if match?
+            if match[1] == 'Content-Length' then @imageExpectedLength = match[2]
+            @data = @data.substring(match[0].length)
+          else
+            break
 
-      # Start over
-      @data = ''
-      # Grab the remaining bytes of chunk
-      remaining = chunk.substring boundary_index
-      # Try to find the type of the next image
-      typeMatches = remaining.match /Content-Type:\simage\/jpeg\s+/
-      # Try to find the length of the next image
-      matches = remaining.match /Content-Length:\s(\d+)\s+/
+        # Send new image to client
+        @image = @data
+        @emit 'update', @image
 
-      if matches? and matches.length > 1
-        # Grab length of new image and save first chunk
-        newImageBeginning = remaining.indexOf(matches[0]) + matches[0].length
-        @imageExpectedLength = matches[1]
-        @data += remaining.substring newImageBeginning
-      else if typeMatches?
-        # If Content-Length is not present, but Content-Type is
-        newImageBeginning = remaining.indexOf(typeMatches[0]) + typeMatches[0].length
-        @data += remaining.substring newImageBeginning
-      else
-        newImageBeginning = boundary_index + @boundary.length
-        @emit 'error',
-          message: 'Could not find beginning of next image'
+        # Start over
+        @data = ''
+        # If few images came in same time
+        @handleServerResponse chunk.substring(boundary_index + @boundary.length)
+
     else
       @data += chunk
 
