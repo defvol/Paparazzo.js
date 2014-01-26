@@ -62,7 +62,7 @@ class Paparazzo extends EventEmitter
   ###
   boundaryStringFromContentType: (type) ->
     # M-JPEG content type looks like multipart/x-mixed-replace;boundary=<boundary-name>
-    match = type.match(/multipart\/x-mixed-replace;boundary=(.+)/)
+    match = type.match(/multipart\/x-mixed-replace;\s*boundary=(.+)/)
     boundary = match[1] if match?.length > 1
     if not boundary?
       boundary = '--myboundary'
@@ -98,9 +98,9 @@ class Paparazzo extends EventEmitter
       # Grab the remaining bytes of chunk
       remaining = chunk.substring boundary_index
       # Try to find the type of the next image
-      typeMatches = remaining.match /Content-Type:\simage\/jpeg\s+/
+      typeMatches = remaining.match /Content-Type:\s+image\/jpeg\s+/
       # Try to find the length of the next image
-      matches = remaining.match /Content-Length:\s(\d+)\s+/
+      matches = remaining.match /Content-Length:\s+(\d+)\s+/
 
       if matches? and matches.length > 1
         # Grab length of new image and save first chunk
