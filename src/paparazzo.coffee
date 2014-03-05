@@ -3,7 +3,7 @@
 #
 #   paparazzo = new Paparazzo(options)
 #
-#   paparazzo.on "update", (image) => 
+#   paparazzo.on "update", (image) =>
 #     console.log "Downloaded #{image.length} bytes"
 #
 #   paparazzo.start()
@@ -17,16 +17,13 @@ class Paparazzo extends EventEmitter
   @image = ''
   imageExpectedLength = -1
 
-  constructor: (options) ->
+  constructor: (@options) ->
 
-    if not options.host?
+    unless @options.host
       emitter.emit 'error',
         message: 'Host is not defined!'
-    options.port or= 80
-    options.path or= '/'
-    options.headers or= {}
-    @options = options
-    @memory = options.memory or 8388608 # 8MB
+    @memory = @options.memory or 8388608 # 8MB
+    delete @options.memory
 
   start: ->
 
@@ -45,7 +42,7 @@ class Paparazzo extends EventEmitter
 
       response.setEncoding 'binary'
       response.on 'data', emitter.handleServerResponse
-      response.on 'end', () ->
+      response.on 'end', ->
         emitter.emit 'error',
           message: "Server closed connection!"
 
@@ -64,10 +61,12 @@ class Paparazzo extends EventEmitter
     # M-JPEG content type looks like multipart/x-mixed-replace;boundary=<boundary-name>
     match = type.match(/multipart\/x-mixed-replace;\s*boundary=(.+)/)
     boundary = match[1] if match?.length > 1
-    if not boundary?
+    unless boundary
       boundary = '--myboundary'
       @emit 'error',
         message: "Couldn't find a boundary string. Falling back to --myboundary."
+    else if boundary.indexOf '--' isnt 0
+      boundary = '--' + boundary
     boundary
 
   ###
@@ -82,7 +81,7 @@ class Paparazzo extends EventEmitter
   #
   ###
   handleServerResponse: (chunk) =>
-    boundary_index = chunk.indexOf(@boundary)
+    boundary_index = chunk.indexOf @boundary
 
     # If a boundary is found, generate a new image from the data accumulated up to the boundary.
     # Otherwise keep eating. We will probably find a boundary in the next chunk.

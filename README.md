@@ -34,20 +34,17 @@ Usage
 ```coffeescript
 # Initialize
 
-# Basic auth http://en.wikipedia.org/wiki/Basic_access_authentication
-auth = 'Basic ' + new Buffer('user:secret').toString('base64')
-
 # Same parameters as http.get http://nodejs.org/docs/v0.6.0/api/http.html#http.get
-paparazzo = new Paparazzo 
+paparazzo = new Paparazzo
   host: 'camera.dyndns.org'
   port: 1881
   path: '/mjpg/video.mjpg'
-  headers: { 'Authorization': auth }
+  auth: 'user:secret'
 
-paparazzo.on "update", (image) => 
+paparazzo.on "update", (image) =>
   console.log "Downloaded #{image.length} bytes"
 
-paparazzo.on 'error', (error) => 
+paparazzo.on 'error', (error) =>
   console.log "Error: #{error.message}"
 
 paparazzo.start()
@@ -68,7 +65,7 @@ var TIMEOUT = 2000;
 var refreshInterval = setInterval(function() {
   var random = Math.floor(Math.random() * Math.pow(2, 31));
   $('img#camera').attr('src', 'http://localhost:3000/camera?i=' + random);
-}, TIMEOUT);	
+}, TIMEOUT);
 ```
 
 ```html
@@ -87,18 +84,19 @@ Tested with
 -
 * Axis
 * Vivotek
+* D-Link
 
 Upcoming features
--  
+-
 * Websockets implementation to get more FPS
 
 TODO
--  
+-
 * More tests
 * Find more public cameras to test
 
-License  
--  
+License
+-
 
 <a rel="license" href="http://opensource.org/licenses/MIT">The MIT License (MIT)</a>
 

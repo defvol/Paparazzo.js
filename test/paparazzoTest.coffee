@@ -18,8 +18,4 @@ describe 'Paparazzo constructor', ->
         paparazzo = new Paparazzo
             host: '85.105.120.239'
         paparazzo.options.path.should.equal '/'
-    it 'should be initialized with a host parameter', ->
-        paparazzo = new Paparazzo
-            port: 1337
-        paparazzo.should.equal {}
 

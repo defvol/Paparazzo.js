@@ -19,17 +19,15 @@
     imageExpectedLength = -1;
 
     function Paparazzo(options) {
+      this.options = options;
       this.handleServerResponse = __bind(this.handleServerResponse, this);
-      if (options.host == null) {
+      if (!this.options.host) {
         emitter.emit('error', {
           message: 'Host is not defined!'
         });
       }
-      options.port || (options.port = 80);
-      options.path || (options.path = '/');
-      options.headers || (options.headers = {});
-      this.options = options;
-      this.memory = options.memory || 8388608;
+      this.memory = this.options.memory || 8388608;
+      delete this.options.memory;
     }
 
     Paparazzo.prototype.start = function() {
@@ -73,11 +71,13 @@
       if ((match != null ? match.length : void 0) > 1) {
         boundary = match[1];
       }
-      if (boundary == null) {
+      if (!boundary) {
         boundary = '--myboundary';
         this.emit('error', {
           message: "Couldn't find a boundary string. Falling back to --myboundary."
         });
+      } else if (boundary.indexOf('--' !== 0)) {
+        boundary = '--' + boundary;
       }
       return boundary;
     };

@@ -36,8 +36,8 @@ paparazzo.start()
 http.createServer (req, res) ->
     data = ''
     path = url.parse(req.url).pathname
-        
-    if path == '/camera' and updatedImage?
+
+    if path == '/camera' and updatedImage
         data = updatedImage
         console.log "Will serve image of #{data.length} bytes"
 
