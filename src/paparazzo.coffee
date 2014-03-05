@@ -3,7 +3,7 @@
 #
 #   paparazzo = new Paparazzo(options)
 #
-#   paparazzo.on "update", (image) => 
+#   paparazzo.on "update", (image) =>
 #     console.log "Downloaded #{image.length} bytes"
 #
 #   paparazzo.start()
@@ -61,7 +61,7 @@ class Paparazzo extends EventEmitter
     # M-JPEG content type looks like multipart/x-mixed-replace;boundary=<boundary-name>
     match = type.match(/multipart\/x-mixed-replace;\s*boundary=(.+)/)
     boundary = match[1] if match?.length > 1
-    if not boundary?
+    unless boundary
       boundary = '--myboundary'
       @emit 'error',
         message: "Couldn't find a boundary string. Falling back to --myboundary."
@@ -81,7 +81,7 @@ class Paparazzo extends EventEmitter
   #
   ###
   handleServerResponse: (chunk) =>
-    boundary_index = chunk.indexOf(@boundary)
+    boundary_index = chunk.indexOf @boundary
 
     # If a boundary is found, generate a new image from the data accumulated up to the boundary.
     # Otherwise keep eating. We will probably find a boundary in the next chunk.
