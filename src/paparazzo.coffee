@@ -17,16 +17,13 @@ class Paparazzo extends EventEmitter
   @image = ''
   imageExpectedLength = -1
 
-  constructor: (options) ->
+  constructor: (@options) ->
 
-    if not options.host?
+    unless @options.host
       emitter.emit 'error',
         message: 'Host is not defined!'
-    options.port or= 80
-    options.path or= '/'
-    options.headers or= {}
-    @options = options
-    @memory = options.memory or 8388608 # 8MB
+    @memory = @options.memory or 8388608 # 8MB
+    delete @options.memory
 
   start: ->
 
