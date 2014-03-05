@@ -78,6 +78,8 @@
         this.emit('error', {
           message: "Couldn't find a boundary string. Falling back to --myboundary."
         });
+      } else if (boundary.indexOf('--' !== 0)) {
+        boundary = '--' + boundary;
       }
       return boundary;
     };

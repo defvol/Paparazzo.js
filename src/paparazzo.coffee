@@ -68,6 +68,8 @@ class Paparazzo extends EventEmitter
       boundary = '--myboundary'
       @emit 'error',
         message: "Couldn't find a boundary string. Falling back to --myboundary."
+    else if boundary.indexOf '--' isnt 0
+      boundary = '--' + boundary
     boundary
 
   ###
