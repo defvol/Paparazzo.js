@@ -45,7 +45,7 @@ class Paparazzo extends EventEmitter
 
       response.setEncoding 'binary'
       response.on 'data', emitter.handleServerResponse
-      response.on 'end', () ->
+      response.on 'end', ->
         emitter.emit 'error',
           message: "Server closed connection!"
 
