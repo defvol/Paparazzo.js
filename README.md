@@ -83,10 +83,9 @@ Demo
 	$ open demo/demo.html
 	$ node demo/bootstrap.js
 
-Tested with
--
-* Axis
-* Vivotek
+For a list of cameras tested check ["List of public
+cameras"](https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras) in the wiki
+section.
 
 Upcoming features
 -  

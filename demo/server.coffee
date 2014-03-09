@@ -4,18 +4,8 @@ Paparazzo = require '../src/paparazzo'
 http = require 'http'
 url = require 'url'
 
-# Some hosts I found googling:
-
-# Success
-# http://85.105.120.239:1881/mjpg/video.mjpg
-# http://94.86.192.168/mjpg/video.mjpg
-# http://hg55.no-ip.org/mjpg/video.mjpg
-
-# Server closed connection
-# http://ip6d6d7343.static.cbizz.nl/BufferingImage?Type=2&ImageAdr=131072
-
-# Can't find image boundary
-# http://61.119.240.67/nphMotionJpeg?Resolution=320x240&Quality=Standard
+# For a list of public cameras to test check:
+# https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras
 
 paparazzo = new Paparazzo
     host: '85.105.120.239'
