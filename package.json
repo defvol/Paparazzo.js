@@ -1,12 +1,12 @@
 {
     "name": "paparazzo",
-    "author": "Rod Wilhelmy <rwilhelmy@gmail.com>",
-    "description": "MJPG streaming for the masses (any browser)",
-    "version": "0.5.0",
+    "author": "Rod Wilhelmy <rod@wilhel.me>",
+    "description": "A high performance web proxy for serving MJPG streams to the masses.",
+    "version": "0.5.1",
     "main": "./src/paparazzo",
     "repository": {
       "type": "git",
-      "url": "https://github.com/wilhelmbot/Paparazzo.js.git"
+      "url": "https://github.com/rodowi/Paparazzo.js.git"
     },
     "keywords": [
       "mjpg",
