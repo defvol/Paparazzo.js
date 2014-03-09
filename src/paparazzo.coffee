@@ -15,6 +15,7 @@ EventEmitter = require('events').EventEmitter
 class Paparazzo extends EventEmitter
 
   @image = ''
+  @request = null
   imageExpectedLength = -1
 
   constructor: (options) ->
@@ -33,7 +34,7 @@ class Paparazzo extends EventEmitter
     # To use EventEmitter in the callback, we must save our instance 'this'
     emitter = @
 
-    request = http.get @options, (response) ->
+    @request = http.get @options, (response) ->
 
       if response.statusCode != 200
         emitter.emit 'error',
@@ -49,10 +50,17 @@ class Paparazzo extends EventEmitter
         emitter.emit 'error',
           message: "Server closed connection!"
 
-    request.on 'error', (error) ->
+    @request.on 'error', (error) ->
       # Failed to connect
       emitter.emit 'error',
         message: error.message
+
+  stop: ->
+    if @request?
+      @request.removeAllListeners 'error'
+      @request.removeAllListeners 'data'
+      @request.removeAllListeners 'end'
+      @request.abort()
 
   ###
   #
