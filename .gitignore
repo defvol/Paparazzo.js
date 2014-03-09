@@ -1,4 +1,5 @@
 .DS_Store
 node_modules/
 demo/server.js
+src/paparazzo.js
 

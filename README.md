@@ -78,12 +78,9 @@ var refreshInterval = setInterval(function() {
 
 Demo
 -
-	$ make test
-	$ npm install
-	$ open demo/demo.html
-	$ node demo/bootstrap.js
+	$ make run
 
-For a list of cameras tested check ["List of public
+For a list of tested cameras check ["List of public
 cameras"](https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras) in the wiki
 section.
 
