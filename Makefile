@@ -1,3 +1,6 @@
+install: compile
+	npm install
+
 compile:
 	@find src  -name '*.coffee' | xargs coffee -c
 	@find demo -name '*.coffee' | xargs coffee -c
