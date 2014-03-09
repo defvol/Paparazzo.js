@@ -6,6 +6,7 @@ compile:
 	@find demo -name '*.coffee' | xargs coffee -c
 
 run: install
+	open demo/demo.html
 	node demo/bootstrap.js
 
 test:
