@@ -8,8 +8,8 @@ url = require 'url'
 # https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras
 
 paparazzo = new Paparazzo
-    host: '85.105.120.239'
-    port: 1881
+    host: 'plazacam.studentaffairs.duke.edu'
+    port: 80
     path: '/mjpg/video.mjpg'
 
 updatedImage = ''
