@@ -80,8 +80,8 @@ Demo
 -
 	$ make run
 
-For a list of tested cameras check ["List of public
-cameras"](https://github.com/rodowi/Paparazzo.js/wiki/List-of-public-cameras) in the wiki
+For a list of tested cameras check ["List of tested
+cameras"](https://github.com/rodowi/Paparazzo.js/wiki/List-of-tested-cameras) in the wiki
 section.
 
 Upcoming features
