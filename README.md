@@ -98,4 +98,4 @@ License
 
 <a rel="license" href="http://opensource.org/licenses/MIT">The MIT License (MIT)</a>
 
-Copyright (c) 2012-2013 Rodolfo Wilhelmy <[rod@wilhel.me](mailto:rod@wilhel.me)>
+Copyright (c) 2014 Rodolfo Wilhelmy <[rod@wilhel.me](mailto:rod@wilhel.me)>
