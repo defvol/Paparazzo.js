@@ -3,8 +3,6 @@ Paparazzo.js
 
 _A stalker of [IP cameras](http://en.wikipedia.org/wiki/IP_camera)_
 
-[![endorse](http://api.coderwall.com/wilhelmbot/endorsecount.png)](http://coderwall.com/wilhelmbot)
-
 **What is this?**
 
 A high performance web proxy for serving [MJPG](http://en.wikipedia.org/wiki/Motion_JPEG) streams to the masses.
@@ -98,4 +96,4 @@ License
 
 <a rel="license" href="http://opensource.org/licenses/MIT">The MIT License (MIT)</a>
 
-Copyright (c) 2014 Rodolfo Wilhelmy <[rod@wilhel.me](mailto:rod@wilhel.me)>
+Copyright (c) 2014 Rodolfo Wilhelmy, AMA on Twitter <[@rodowi](https://twitter.com/rodowi)>
