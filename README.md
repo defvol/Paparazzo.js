@@ -82,6 +82,15 @@ For a list of tested cameras check ["List of tested
 cameras"](https://github.com/rodowi/Paparazzo.js/wiki/List-of-tested-cameras) in the wiki
 section.
 
+
+Docker Instructions
+-
+
+	// Create Docker image
+	$ docker built -t paparazzo .
+	// Run Docker image and map host port to container
+	$ docker run -p 3000:3000 paparazzo
+
 Upcoming features
 -  
 * Websockets implementation to get more FPS

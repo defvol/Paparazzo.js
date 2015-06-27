@@ -2,8 +2,8 @@ install:
 	npm install
 
 compile:
-	@find src  -name '*.coffee' | xargs node_modules/coffee-script/bin/coffee -c
-	@find demo -name '*.coffee' | xargs node_modules/coffee-script/bin/coffee -c
+	@find src  -name '*.coffee' | xargs coffee -c
+	@find demo -name '*.coffee' | xargs coffee -c
 
 run: install compile
 	open demo/demo.html
