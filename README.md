@@ -96,4 +96,4 @@ License
 
 <a rel="license" href="http://opensource.org/licenses/MIT">The MIT License (MIT)</a>
 
-Copyright (c) 2014 Rodolfo Wilhelmy, AMA on Twitter <[@rodowi](https://twitter.com/rodowi)>
+Author: Rodolfo Wilhelmy, AMA on Twitter <[@rodowi](https://twitter.com/rodowi)>
